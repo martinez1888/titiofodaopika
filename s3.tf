@@ -35,7 +35,7 @@ resource "aws_s3_bucket_object" "titioembacado" {
 
 #POLICY
 resource "aws_s3_bucket_policy" "titioembacado-policy" {
-  bucket = aws_s3_bucket.titioembacado1.id
+  bucket = aws_s3_bucket.titioembacado.id
 
   policy      = jsonencode({
     Version   = "2012-10-17"
