@@ -1,19 +1,19 @@
 #BUCKET
-resource "aws_s3_bucket" "titioembacado" {
-  bucket = "titioembacado"
+resource "aws_s3_bucket" "titioembacadao" {
+  bucket = "titioembacadao"
 }
 
 #VERSIONAMENTO
-resource "aws_s3_bucket_versioning" "titioembacado" {
-  bucket = aws_s3_bucket.titioembacado.id
+resource "aws_s3_bucket_versioning" "titioembacadao" {
+  bucket = aws_s3_bucket.titioembacadao.id
   versioning_configuration {
     status = "Enabled"
   }
 }
 
 #SITE ESTÁTICO
-resource "aws_s3_bucket_website_configuration" "titioembacado" {
-  bucket = aws_s3_bucket.titioembacado.id
+resource "aws_s3_bucket_website_configuration" "titioembacadao" {
+  bucket = aws_s3_bucket.titioembacadao.id
 
   index_document {
     suffix = "index.html"
@@ -25,8 +25,8 @@ resource "aws_s3_bucket_website_configuration" "titioembacado" {
 }
 
 #OBJECTS
-resource "aws_s3_bucket_object" "titioembacado" {
-    bucket   = aws_s3_bucket.titioembacado.id
+resource "aws_s3_bucket_object" "titioembacadao" {
+    bucket   = aws_s3_bucket.titioembacadao.id
     for_each = fileset("data/", "*")
     key      = each.value
     source   = "data/${each.value}"
@@ -34,8 +34,8 @@ resource "aws_s3_bucket_object" "titioembacado" {
 }
 
 #POLICY
-resource "aws_s3_bucket_policy" "titioembacado-policy" {
-  bucket = aws_s3_bucket.titioembacado.id
+resource "aws_s3_bucket_policy" "titioembacadao-policy" {
+  bucket = aws_s3_bucket.titioembacadao.id
 
   policy      = jsonencode({
     Version   = "2012-10-17"
@@ -44,7 +44,7 @@ resource "aws_s3_bucket_policy" "titioembacado-policy" {
         Effect    = "Allow",
         Principal = "*",
         Action    = "s3:GetObject",
-        Resource  = "arn:aws:s3:::titioembacado/*",
+        Resource  = "arn:aws:s3:::titioembacadao/*",
       }
     ]
 	})
